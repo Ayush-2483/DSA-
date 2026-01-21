@@ -8,7 +8,7 @@ public:
             zeros++;
         }
         int i=n-1;
-        int j=n+zeros-1;
+        int j=n+zeros-1; // imaginary expanded array ka lst index hai
         while(i<j){
             if(j<n){
                 arr[j]=arr[i];
@@ -24,3 +24,5 @@ public:
         
     }
 };
+//Right se copy karo, zero mile toh 2 baar likho,
+//aur sirf tab likho jab index real array ke andar ho.
