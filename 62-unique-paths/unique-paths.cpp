@@ -2,7 +2,7 @@ class Solution {
 public:
     int dp[101][101];
     int solve(int i,int j, int m,int n){
-        if(i<0 || i>=m || j<0 || j>=n){
+        if(i>=m || j>=n){
             return 0;
         }
         if(i==m-1 && j==n-1){
