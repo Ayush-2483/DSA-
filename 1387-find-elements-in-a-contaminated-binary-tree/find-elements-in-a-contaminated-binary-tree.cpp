@@ -16,10 +16,7 @@ public:
         if(root==NULL) return false;
         if(root->val==target)
         return true;
-        if(traversal(root->left,target) || traversal(root->right,target))
-        return true;
-          
-        return false;
+        return traversal(root->left,target) || traversal(root->right,target);
 
     }
     FindElements(TreeNode* root) {
