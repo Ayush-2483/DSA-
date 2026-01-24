@@ -15,21 +15,24 @@ public:
         const int MAX =100000;
         vector<int>freq(MAX + 1,0);
 
-        for (int x : nums) freq[x]++;
+        for(int x : nums) 
+        freq[x]++;
 
-        int low = 1,high = MAX;
+        int i = 1,j = MAX;
         int ans = 0;
 
-        while (low <= high){
-            while (low <= high && freq[low] == 0) low++;
-            while (low <= high && freq[high] == 0) high--;
+        while(i<= j){
+            while(i<=j && freq[i] == 0) 
+            i++;
+            while(i<=j && freq[j] == 0) 
+            j--;
 
-            if (low > high) 
+            if(i >j) 
             break;
 
-            ans = max(ans, low + high);
-            freq[low]--;
-            freq[high]--;
+            ans = max(ans,i+j);
+            freq[i]--;
+            freq[j]--;
         }
 
         return ans;
