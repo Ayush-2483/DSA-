@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> rotateElements(vector<int>& nums, int k) {
         vector<int>positive;
-        for(int x : nums){
+        for(int &x : nums){
             if(x>=0)
             positive.push_back(x);
         }
