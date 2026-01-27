@@ -7,7 +7,7 @@ public:
 
         if (t[i] != -1) return t[i];
 
-        int take = nums[i]+solve(nums, i + 2, end);
+        int take = nums[i]+solve(nums,i + 2,end);
         int skip = solve(nums, i + 1, end);
 
         return t[i] = max(take, skip);
