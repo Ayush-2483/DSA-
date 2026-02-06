@@ -1,28 +1,20 @@
 class Solution {
 public:
     void duplicateZeros(vector<int>& arr) {
-        int n = arr.size();
-        int zeros=0;
-        for(int x : arr){
-            if(x==0)
-            zeros++;
+    int n =arr.size();
+    vector<int>res;
+    for(int i=0;i<n && res.size()<n;i++){
+        if(arr[i]==0){
+            res.push_back(0);
+            if(res.size()<n)
+            res.push_back(0);
         }
-        int i=n-1;
-        int j=n+zeros-1; // imaginary expanded array ka lst index hai
-        while(i<j){
-            if(j<n){
-                arr[j]=arr[i];
-            }
-            if(arr[i]==0){
-                j--;
-                if(j<n)
-                arr[j]=0;
-            }
-            i--;
-            j--;
+        else{
+            res.push_back(arr[i]);
         }
-        
+    }
+    for(int i=0;i<n;i++){
+        arr[i]=res[i];
+    }
     }
 };
-//Right se copy karo, zero mile toh 2 baar likho,
-//aur sirf tab likho jab index real array ke andar ho.
