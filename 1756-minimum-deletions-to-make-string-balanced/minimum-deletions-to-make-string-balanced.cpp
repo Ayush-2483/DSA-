@@ -7,7 +7,10 @@ public:
             Bcount++;
         }
         else{
-            deletion=min(deletion+1,Bcount);
+            if(Bcount>0){
+               deletion++;
+               Bcount--; 
+            }
         }
     }
     return deletion;
