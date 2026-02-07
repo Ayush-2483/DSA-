@@ -1,13 +1,23 @@
 class Solution {
 public:
+//// using BFS 
     int n;
-    void dfs(vector<vector<int>>&isConnected,int u,vector<bool>&visited){
+    void bfs(vector<vector<int>>&isConnected,int u,vector<bool>&visited){
+        queue<int>q;
+        q.push(u);
         visited[u]=true;
-        for(int v=0;v<n;v++){
+
+        while(!q.empty()){
+           int u=q.front();
+           q.pop();
+
+           for(int v=0;v<n;v++){
             if(!visited[v] && isConnected[u][v]==1){
-                dfs(isConnected,v,visited);
+                bfs(isConnected,v,visited);
             }
+           } 
         }
+
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
          n=isConnected.size();
@@ -16,7 +26,7 @@ public:
 
          for(int i=0;i<n;i++){
             if(!visited[i]){
-                dfs(isConnected,i,visited);
+                bfs(isConnected,i,visited);
                 count++;
             }
          }
