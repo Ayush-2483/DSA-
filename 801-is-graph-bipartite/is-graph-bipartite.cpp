@@ -24,9 +24,7 @@ public:
             if(color[u]==color[v])  return false;
             else if(color[v]== -1){
                 color[v]=1-color[u];
-
-                if(checkBipartiteBFS(graph,v,color,color[v])==false)
-                return false;
+                q.push(v);
             }
         }
       }
