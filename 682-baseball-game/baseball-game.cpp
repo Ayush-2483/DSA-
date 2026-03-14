@@ -7,7 +7,7 @@ public:
            int first = st.top();
            st.pop();
 
-         int second = st.top(); 
+          int second = st.top(); 
 
           st.push(first);
           st.push(first + second);
