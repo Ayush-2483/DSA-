@@ -1,25 +1,31 @@
 class Solution {
 public:
-    bool solve(string s , string p){
-        if(p.length()==0){
-            return s.length()==0;
+    int t[21][21];
+    bool solve(int i , int j , string s , string p){
+        if(j == p.length()){
+            return i == s.length();
+        }
+        if(t[i][j]!=-1){
+            return t[i][j];
         }
         bool fisrt_char_match=false;
 
-        if(s.length()>0 && (p[0]==s[0] || p[0]=='.')){
+        if(i < s.length() && (p[j]==s[i] || p[j]=='.')){
             fisrt_char_match=true;
         }
 
-        if(p[1]=='*'){
-            bool not_take = solve(s,p.substr(2));
-            bool take = fisrt_char_match && solve(s.substr(1),p);
+        if(p[j+1]=='*'  && j+1<p.length()){
+            bool not_take = solve(i , j+2 , s,p);
+            bool take = fisrt_char_match && solve(i+1,j,s,p);
 
-            return not_take || take ;
+            return t[i][j]=not_take || take ;
         }
-        return fisrt_char_match && solve(s.substr(1),p.substr(1));
+        return t[i][j]=fisrt_char_match && solve(i+1,j+1,s,p);
 
     }
     bool isMatch(string s, string p) {
-        return solve(s,p);
+        memset(t,-1,sizeof(t));
+        return solve(0,0,s,p);
+
     }
 };
