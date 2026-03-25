@@ -16,7 +16,7 @@ public:
        return false;
     //Horizontal split
        ll upper =0;
-       for(int i=0;i<n;i++){
+       for(int i=0;i<n-1;i++){
         upper+=rowSum[i];
         if(upper == total-upper)
         return true;
