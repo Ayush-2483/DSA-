@@ -1,35 +1,21 @@
 class Solution {
 public:
     long long countDistinct(long long n) {
-        string s = to_string(n);
-        int len = s.size();
-        
-        long long ans = 0;
-
-        for(int l = 1; l < len; l++){
-            long long ways = 1;
-            for(int i = 0; i < l; i++){
-                ways *= 9;
-            }
-            ans += ways;
+        string s=to_string(n);
+        int m=s.size();
+        vector<long long>v(m+1,1);
+        for(int i=1;i<=m;i++){
+            v[i]=v[i-1]*9LL;
         }
-
-        for(int i = 0; i < len; i++){
-            int digit = s[i] - '0';
-
-            for(int d = 1; d < digit; d++){
-                long long ways = 1;
-                for(int j = i + 1; j < len; j++){
-                    ways *= 9;
-                }
-                ans += ways;
-            }
-
-            if(digit == 0) break;
-
-            if(i == len - 1) ans++;
+        long long total=0;
+        for(int len=1;len<m;len++){
+            total+=v[len];
         }
-
-        return ans;
+        for(int i=0;i<m;i++){
+            int d=s[i]-'0';
+            if(d==0)return total;
+            total+=(long long)(d-1)*v[m-i-1];
+        }
+        return total+1;
     }
 };
