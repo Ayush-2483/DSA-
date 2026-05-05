@@ -1,10 +1,10 @@
 class Solution {
 public:
     int minimumChairs(string s) {
-        int people = 0, ans = 0;
+        int people=0,ans = 0;
 
-        for(char c : s){
-            if(c == 'E')
+        for(char c :s){
+            if(c =='E')
                 people++;
             else
                 people--;
