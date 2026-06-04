@@ -17,21 +17,27 @@ public:
     //     else{
     //         low=mid+1;
     //     }
-
     //   }
     //   return ans;
-    int slow=0,fast=0;
-    do{
-        slow=nums[slow];
-        fast=nums[nums[fast]];
-    }while(slow!=fast);
-    slow=0;
-    while(slow!=fast){
-        slow=nums[slow];
-        fast=nums[fast];
-    }
+    // int slow=0,fast=0;
+    // do{
+    //     slow=nums[slow];
+    //     fast=nums[nums[fast]];
+    // }while(slow!=fast);
+    // slow=0;
+    // while(slow!=fast){
+    //     slow=nums[slow];
+    //     fast=nums[fast];
+    // }
 
-     return slow;
+    //  return slow;
+sort(nums.begin(),nums.end());
+for(int i=1;i<nums.size();i++){
+    if(nums[i-1]==nums[i])
+        return nums[i];
+}
+
+return -1;
 
     }
 };
