@@ -1,8 +1,9 @@
 class Solution {
 public:
     int dp[101][101];
+    //Memoization
     int solve(int i,int j, int m,int n){
-        if(i>=m || j>=n){
+        if(i>=m || j>=n || i<0 || j<0){
             return 0;
         }
         if(i==m-1 && j==n-1){
