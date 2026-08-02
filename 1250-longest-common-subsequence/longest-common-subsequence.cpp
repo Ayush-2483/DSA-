@@ -1,44 +1,22 @@
 class Solution {
 public:
     int dp[1001][1001];
-    // int solve(string &s1 , string &s2 , int i ,int j){
-    //     if(i<0 || j<0){
-    //         return 0;
-    //     }
-    //     if(dp[i][j]!=-1) return dp[i][j];
+    int LCS(string &text1 , string &text2 , int n , int m){
+        if(n==0 || m==0) return 0;
+       
+       if(dp[n][m]!= -1) return dp[n][m];
 
-    //     if(s1[i]==s2[j]){
-    //         dp[i][j]= 1+solve(s1,s2,i-1,j-1);
-    //     }
-    //     else{
-    //         dp[i][j]= max(solve(s1,s2,i-1,j),solve(s1,s2,i,j-1));
-    //     }
-    //     return dp[i][j];
-    // }
-    int longestCommonSubsequence(string s1, string s2) {
-        // memset(dp,-1,sizeof(dp));
-        // return solve(s1,s2,s1.size()-1,s2.size()-1);
-        int m=s1.size();
-        int n=s2.size();
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=n;j++){
-                if(i==0 || j==0)
-                dp[i][j]=0;
-            }
+        if(text1[n-1]==text2[m-1]){
+            dp[n][m]= 1+LCS(text1,text2,n-1,m-1);
         }
-        for(int i=1;i<=m;i++){
-            int j=1;
-            while(j<=n){
-                if(s1[i-1]==s2[j-1]){
-                    dp[i][j]=dp[i-1][j-1]+1;
-                }
-                else{
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-                }
-                j++;
-            }
+        else{
+            dp[n][m]= max(LCS(text1,text2,n,m-1),LCS(text1,text2,n-1,m));
         }
-        return dp[m][n];
-
+        return dp[n][m];
+    }
+    int longestCommonSubsequence(string &text1, string &text2) {
+        memset(dp, -1,sizeof(dp));
+        int n=text1.size(),m=text2.size();
+        return LCS(text1,text2,n,m);
     }
 };
