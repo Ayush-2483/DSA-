@@ -1,25 +1,35 @@
 class Solution {
 public:
 // reverse approach already done 
-    int dp[1001][1001];
-    int solve(string &s,int i,int j){
-        if(i>j) return 0;
-        if(i==j) return 1;
-        if(dp[i][j]!=-1) return dp[i][j];
-        if(s[i]==s[j]){
-            dp[i][j]= 2+solve(s,i+1,j-1);
+    int LCS(string &s1, string &s2,int n,int m){
+        vector<vector<int>>dp(n+1 , vector<int>(m+1));
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i==0 || j==0)
+                dp[i][j]=0;
+            }
         }
-        else{
-            dp[i][j]= max(solve(s,i+1,j),solve(s,i,j-1));
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                if(s1[i-1]==s2[j-1]){
+                    dp[i][j]= 1+dp[i-1][j-1];
+                }else{
+                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                }
+                
+                
+            }
         }
-        return dp[i][j];
+        return dp[n][m];
+        
     }
- 
     
     int longestPalindromeSubseq(string s) {
-        memset(dp,-1,sizeof(dp));
-        int i=0,j=s.size()-1;
-        return solve(s,i,j);
+        int n=s.size();
+        string a=s;
+        reverse(s.begin(),s.end());
+        string b=s;
+        return LCS(a,b,n,n);
         
         
     }
